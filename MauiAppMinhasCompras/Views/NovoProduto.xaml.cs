@@ -29,6 +29,4 @@ public partial class NovoProduto : ContentPage
             await DisplayAlert("Ops", ex.Message, "OK");
         }
     }
-
-
 }
