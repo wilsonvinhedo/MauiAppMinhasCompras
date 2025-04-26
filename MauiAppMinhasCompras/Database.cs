@@ -21,6 +21,15 @@ namespace MauiAppMinhasCompras
             return _database.Table<Produto>().ToListAsync();
         }
 
+        public Task<List<Produto>> Search(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+                return GetAll();
+            return _database.Table<Produto>()
+                .Where(p => p.Descricao.Contains(query))
+                .ToListAsync();
+        }
+
         public Task<int> Insert(Produto produto)
         {
             return _database.InsertAsync(produto);
@@ -34,6 +43,14 @@ namespace MauiAppMinhasCompras
         public Task<int> Delete(Produto produto)
         {
             return _database.DeleteAsync(produto);
+        }
+
+        public async Task<int> Delete(int id)
+        {
+            var produto = await _database.Table<Produto>().Where(p => p.Id == id).FirstOrDefaultAsync();
+            if (produto != null)
+                return await _database.DeleteAsync(produto);
+            return 0;
         }
     }
 }

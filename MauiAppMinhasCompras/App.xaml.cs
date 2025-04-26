@@ -1,37 +1,25 @@
-﻿using MauiAppMinhasCompras.Helpers;
+﻿using System;
+using System.IO;
 using System.Globalization;
+using System.Threading;
 
 namespace MauiAppMinhasCompras
 {
     public partial class App : Application
     {
-        static SQLiteDatabaseHelper _db;
-
-        public static SQLiteDatabaseHelper Db
-        {
-            get
-            {
-                if (_db == null)
-                {
-                    string path = Path.Combine(
-                        Environment.GetFolderPath(
-                            Environment.SpecialFolder.LocalApplicationData),
-                        "banco_sqlite_compras.db3");
-
-                    _db = new SQLiteDatabaseHelper(path);
-                }
-
-                return _db;
-            }
-        }
+        public static Database Db { get; private set; }
 
         public App()
         {
             InitializeComponent();
 
+            // Configurar regionalização para pt-BR
             Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
 
-            //MainPage = new AppShell();
+            // Inicializar o banco de dados
+            string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "compras.db3");
+            Db = new Database(dbPath);
+
             MainPage = new NavigationPage(new Views.ListaProduto());
         }
     }
