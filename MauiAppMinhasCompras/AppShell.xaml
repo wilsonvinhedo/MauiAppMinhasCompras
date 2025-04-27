@@ -10,4 +10,10 @@
         Title="Minhas Compras" 
         ContentTemplate="{DataTemplate views:ListaProduto}" 
         Route="ListaProduto" />
+
+    <!-- Adicionar Relatório -->
+    <ShellContent 
+        Title="Relatório" 
+        ContentTemplate="{DataTemplate views:RelatorioCategoria}" 
+        Route="RelatorioCategoria" />
 </Shell>
