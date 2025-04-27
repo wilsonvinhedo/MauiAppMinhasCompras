@@ -66,15 +66,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Views\EditarProduto.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\ListaProduto.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Views\NovoProduto.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<MauiXaml Update="Views\ListaProduto.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<Compile Update="Views\ListaProduto.xaml.cs">
+			<DependentUpon>ListaProduto.xaml</DependentUpon>
+		</Compile>
+		<MauiXaml Update="Views\EditarProduto.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
+		<MauiXaml Update="Views\NovoProduto.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</MauiXaml>
 	</ItemGroup>
+	
 
 </Project>

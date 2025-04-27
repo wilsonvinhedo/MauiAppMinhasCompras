@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppMinhasCompras.Views.ListaProduto"
              Title="Minhas Compras">
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Somar" Clicked="ToolbarItem_Clicked_1" />
         <ToolbarItem Text="Adicionar" Clicked="ToolbarItem_Clicked" />
     </ContentPage.ToolbarItems>
-
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -16,22 +14,32 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-
     <VerticalStackLayout>
         <SearchBar x:Name="txt_search" 
-            Margin="-15, 0, 0, 0"
-            Placeholder="Busca de Produtos"
-            TextChanged="txt_search_TextChanged"/>
-
+                  Margin="-15, 0, 0, 0"
+                  Placeholder="Busca de Produtos"
+                  TextChanged="txt_search_TextChanged"/>
+        <Label Text="Filtrar por Categoria" />
+        <Picker x:Name="pickerFiltroCategoria" Title="Selecione a Categoria" SelectedIndexChanged="OnFiltroCategoriaChanged">
+            <Picker.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Todas</x:String>
+                    <x:String>Alimentos</x:String>
+                    <x:String>Higiene</x:String>
+                    <x:String>Limpeza</x:String>
+                    <x:String>Outros</x:String>
+                </x:Array>
+            </Picker.ItemsSource>
+        </Picker>
         <Border Padding="0" Margin="10" VerticalOptions="Fill">
             <Grid>
                 <ListView x:Name="lst_produtos"
-                    IsPullToRefreshEnabled="True"
-                    Refreshing="lst_produtos_Refreshing"
-                    ItemSelected="lst_produtos_ItemSelected">
+                          IsPullToRefreshEnabled="True"
+                          Refreshing="lst_produtos_Refreshing"
+                          ItemSelected="lst_produtos_ItemSelected">
                     <ListView.Header>
                         <Grid ColumnDefinitions="30, 100, 80, 50, 90"
-                            BackgroundColor="{StaticResource Gray100}">
+                              BackgroundColor="{StaticResource Gray100}">
                             <Label Grid.Column="0" Text="ID" Padding="5" FontAttributes="Bold" />
                             <Label Grid.Column="1" Text="Descrição" FontAttributes="Bold" />
                             <Label Grid.Column="2" Text="Preço" FontAttributes="Bold" />
@@ -59,10 +67,4 @@
             </Grid>
         </Border>
     </VerticalStackLayout>
-</ContentPage>     
-
-
-    
-    
-
-    
+</ContentPage>

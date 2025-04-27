@@ -1,10 +1,15 @@
-﻿namespace MauiAppMinhasCompras
+﻿using MauiAppMinhasCompras.Views;
+
+namespace MauiAppMinhasCompras;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        // REGISTRANDO as rotas para as páginas
+        Routing.RegisterRoute(nameof(NovoProduto), typeof(NovoProduto));
+        Routing.RegisterRoute(nameof(EditarProduto), typeof(EditarProduto));
     }
 }
